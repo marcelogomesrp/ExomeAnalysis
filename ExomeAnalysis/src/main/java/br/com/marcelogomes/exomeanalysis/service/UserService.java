@@ -17,7 +17,7 @@ public class UserService implements Serializable {
     private UserDao userDao;
     
     public void persiste(User user){
-        userDao.persiste(user);
+        userDao.persist(user);
     }
 
 }

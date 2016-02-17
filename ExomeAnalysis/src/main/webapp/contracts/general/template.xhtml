@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Exome Analysis</title>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true" >
+            <p:layoutUnit id="top" position="north" size="106" >
+                <h:outputText value="Exome Analysis"/>
+                <h:form>
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Home" outcome="index" icon="ui-icon-home" >
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Sign in" outcome="sign_in" icon="ui-icon-star" >
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Sign up" outcome="sign_up" icon="ui-icon-star" >
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <p:growl />
+                </h:form>
+                <ui:insert name="content">
+
+                </ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+
+
+    </h:body>
+
+</html>
