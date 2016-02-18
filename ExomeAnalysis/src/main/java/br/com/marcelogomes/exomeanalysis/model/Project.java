@@ -1,10 +1,14 @@
 package br.com.marcelogomes.exomeanalysis.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -13,12 +17,18 @@ import javax.persistence.Id;
 @Entity
 public class Project implements Serializable {
 
+
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
+    @OneToMany(mappedBy = "project")
+    private List<Variant> variants;
+    @Enumerated(EnumType.STRING)
+    private ProjectState projectState;
+    
     public Long getId() {
         return id;
     }
@@ -34,6 +44,23 @@ public class Project implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Variant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(List<Variant> variants) {
+        this.variants = variants;
+    }
+
+    public ProjectState getProjectState() {
+        return projectState;
+    }
+
+    public void setProjectState(ProjectState projectState) {
+        this.projectState = projectState;
+    }
+    
     
     
 

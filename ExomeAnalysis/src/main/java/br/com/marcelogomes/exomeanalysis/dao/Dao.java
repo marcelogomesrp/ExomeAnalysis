@@ -8,8 +8,11 @@ package br.com.marcelogomes.exomeanalysis.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.persistence.Parameter;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -48,5 +51,15 @@ public class Dao<Pk, T> implements Serializable {
         Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[1];
         return clazz;
+    }
+    
+    public List<T> findByQueryParameters(String jpql, Map<String,Object> parameters){
+        Query query = em.createQuery(jpql);
+        if(parameters != null){
+            for (String key : parameters.keySet()) {
+                query.setParameter(key, parameters.get(key));
+            }
+        }
+        return query.getResultList();
     }
 }

@@ -49,16 +49,23 @@
         </dependency>
         
         
-                <dependency>
-  			<groupId>com.sun.faces</groupId>
-  			<artifactId>jsf-impl</artifactId>
- 		 	<version>2.2.11</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.2.11</version>
-		</dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+                
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+            <scope>compile</scope>
+        </dependency>
                 
     </dependencies>
 
