@@ -6,15 +6,15 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <p:panel header="Sign in" >
+        <p:panel header="Sign in login" >
             <h:form>
                 <p:panelGrid columns="2" >
                     <h:outputLabel value="Email" for="email" />
-                    <h:inputText value="#{userAddMB.user.email}" id="email" />
-                    <h:outputLabel value="Senha" for="senha" />
-                    <h:inputText value="#{userAddMB.user.senha}" id="senha" />
+                    <h:inputText value="#{signInMB.user.email}" id="email" />
+                    <h:outputLabel value="Password" for="password" />
+                    <h:inputText value="#{signInMB.user.password}" id="password" />
                 </p:panelGrid>
-                <p:commandButton value="Sign in" action="#{userAddMB.persiste}" ajax="false" />
+                <p:commandButton value="Sign in" action="#{signInMB.doLogin}" ajax="false" />
             </h:form>
         </p:panel>
     </ui:define>

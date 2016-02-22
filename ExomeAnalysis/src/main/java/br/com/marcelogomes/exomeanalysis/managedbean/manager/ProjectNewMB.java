@@ -1,6 +1,8 @@
 package br.com.marcelogomes.exomeanalysis.managedbean.manager;
 
+import br.com.marcelogomes.exomeanalysis.managedbean.UserMB;
 import br.com.marcelogomes.exomeanalysis.model.Project;
+import br.com.marcelogomes.exomeanalysis.model.User;
 import br.com.marcelogomes.exomeanalysis.service.ProjectService;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -28,6 +29,8 @@ public class ProjectNewMB implements Serializable {
     private UploadedFile uploadedFile;
     @Inject
     private ProjectService projectService;
+    @Inject
+    private UserMB userMB;
 
     /**
      * Creates a new instance of ProjectNew
@@ -52,6 +55,9 @@ public class ProjectNewMB implements Serializable {
     }
 
     public void save() {
+        User manager = userMB.getUser();
+        System.out.println("manager: " + manager.toString());
+        project.setManager(manager);
         File arquivoLocal = null;
         try {
             projectService.save(project, uploadedFile.getInputstream());

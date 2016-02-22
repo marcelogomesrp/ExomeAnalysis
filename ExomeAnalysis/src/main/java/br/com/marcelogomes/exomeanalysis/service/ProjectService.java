@@ -4,6 +4,7 @@ import br.com.marcelogomes.exomeanalysis.dao.ProjectDao;
 import br.com.marcelogomes.exomeanalysis.dao.VariantDao;
 import br.com.marcelogomes.exomeanalysis.model.Project;
 import br.com.marcelogomes.exomeanalysis.model.ProjectState;
+import br.com.marcelogomes.exomeanalysis.model.User;
 import br.com.marcelogomes.exomeanalysis.model.Variant;
 import java.io.BufferedReader;
 import java.io.File;
@@ -92,14 +93,20 @@ public class ProjectService implements Serializable {
             }
             buffRead.close();
             fileReader.close();
-            Thread.sleep(100);
-            System.out.println("Analise gravada com sucess");
+            //Thread.sleep(10000);
+            project.setProjectState(ProjectState.processed); 
         } catch (Exception ex) {
+            project.setProjectState(ProjectState.processing_error);
         }
+        projectDao.merge(project);
     }
 
     public List<Project> findAllUploaded() {
         return projectDao.findByState(ProjectState.uploaded);
+    }
+
+    public List<Project> findAllProccessed(User user) {
+        return projectDao.findByState(ProjectState.processed, user);
     }
 
 }

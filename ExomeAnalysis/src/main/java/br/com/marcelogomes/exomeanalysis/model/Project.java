@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -28,6 +29,13 @@ public class Project implements Serializable {
     private List<Variant> variants;
     @Enumerated(EnumType.STRING)
     private ProjectState projectState;
+    @ManyToOne
+    private User manager;
+
+
+    public Project() {
+        manager = new User();
+    }
     
     public Long getId() {
         return id;
@@ -60,6 +68,16 @@ public class Project implements Serializable {
     public void setProjectState(ProjectState projectState) {
         this.projectState = projectState;
     }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
+
+    
     
     
     

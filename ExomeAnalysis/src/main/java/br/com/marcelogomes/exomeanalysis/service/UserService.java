@@ -20,4 +20,8 @@ public class UserService implements Serializable {
         userDao.persist(user);
     }
 
+    public User validLogin(User user) {
+        return  userDao.findByEmailPassword(user.getEmail(), user.getPassword());
+    }
+
 }

@@ -1,6 +1,7 @@
 package br.com.marcelogomes.exomeanalysis.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Variant implements Serializable {
+    @Column(columnDefinition="tinyint(1) default 0")
+    private boolean selected;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,8 +31,14 @@ public class Variant implements Serializable {
     private String quality;
     private String filter;
     private String additionalInformation;
-    
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public Long getId() {
         return id;
