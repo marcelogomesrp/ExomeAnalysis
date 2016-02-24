@@ -29,6 +29,13 @@ public class ProjectDao extends Dao<Long, Project> implements Serializable{
         return query.getResultList();
     }
     
+    public List<User> findReviserinProject(Long id){
+        Query query;
+        query = em.createQuery("SELECT p.listRevisers from Project p WHERE p.id = :id");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
+    
     
     
 }

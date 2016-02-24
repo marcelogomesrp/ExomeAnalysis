@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -36,8 +37,10 @@ public class User implements Serializable {
     private boolean active;
     @Enumerated(EnumType.STRING)
     private Profile defaultProfile;
-    @OneToMany(mappedBy = "manager")
+    @OneToMany(mappedBy = "manager")    
     private List<Project> projects;
+    @ManyToMany(mappedBy = "listRevisers")
+    private List<Project> listProjectsReviser;
 
     public User() {
         this.profiles = new HashSet<>();
@@ -147,6 +150,22 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", email=" + email + ", password=" + password + '}';
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public List<Project> getListProjectsReviser() {
+        return listProjectsReviser;
+    }
+
+    public void setListProjectsReviser(List<Project> listProjectsReviser) {
+        this.listProjectsReviser = listProjectsReviser;
     }
 
     

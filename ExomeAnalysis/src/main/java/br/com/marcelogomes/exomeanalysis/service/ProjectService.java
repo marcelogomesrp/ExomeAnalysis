@@ -1,6 +1,7 @@
 package br.com.marcelogomes.exomeanalysis.service;
 
 import br.com.marcelogomes.exomeanalysis.dao.ProjectDao;
+import br.com.marcelogomes.exomeanalysis.dao.UserDao;
 import br.com.marcelogomes.exomeanalysis.dao.VariantDao;
 import br.com.marcelogomes.exomeanalysis.model.Project;
 import br.com.marcelogomes.exomeanalysis.model.ProjectState;
@@ -33,6 +34,8 @@ public class ProjectService implements Serializable {
     private ProjectDao projectDao;
     @Inject
     private VariantDao variantDao;
+    @Inject
+    private UserDao userDao;
 
     public void save(Project project) {
         projectDao.persist(project);
@@ -107,6 +110,15 @@ public class ProjectService implements Serializable {
 
     public List<Project> findAllProccessed(User user) {
         return projectDao.findByState(ProjectState.processed, user);
+    }
+    
+    public List<User> findReviserInProject(Project project){
+        return projectDao.findReviserinProject(project.getId());
+    }
+    //findNotInProject
+    
+    public List<User> findReviserNotInProject(Project project){
+        return userDao.findNotInProject(project.getId());
     }
 
 }

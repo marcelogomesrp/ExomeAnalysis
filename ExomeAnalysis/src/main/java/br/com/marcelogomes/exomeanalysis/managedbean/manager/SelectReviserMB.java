@@ -2,6 +2,7 @@ package br.com.marcelogomes.exomeanalysis.managedbean.manager;
 
 import br.com.marcelogomes.exomeanalysis.model.Project;
 import br.com.marcelogomes.exomeanalysis.model.User;
+import br.com.marcelogomes.exomeanalysis.service.ProjectService;
 import br.com.marcelogomes.exomeanalysis.service.ReviserService;
 import java.io.Serializable;
 import java.util.List;
@@ -16,6 +17,8 @@ import javax.inject.Inject;
 @Named(value = "selectReviserMB")
 @RequestScoped
 public class SelectReviserMB implements Serializable{
+    @Inject
+    private ProjectService projectService;
     @Inject
     private ReviserService reviserService;
     private Project project;
@@ -46,7 +49,8 @@ public class SelectReviserMB implements Serializable{
     }
 
     public List<User> getListSelectReviser() {
-        return reviserService.findSelectedByProject(project);
+        //return reviserService.findSelectedByProject(project);
+        return projectService.findReviserInProject(project);
     }
 
     public void setListSelectReviser(List<User> listSelectReviser) {

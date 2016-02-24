@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -31,6 +32,9 @@ public class Project implements Serializable {
     private ProjectState projectState;
     @ManyToOne
     private User manager;
+    
+    @ManyToMany
+    private List<User> listRevisers;
 
 
     public Project() {
@@ -106,5 +110,15 @@ public class Project implements Serializable {
     public String toString() {
         return "br.com.marcelogomes.exomeanalysis.model.Project[ id=" + id + " ]";
     }
+
+    public List<User> getListRevisers() {
+        return listRevisers;
+    }
+
+    public void setListRevisers(List<User> listRevisers) {
+        this.listRevisers = listRevisers;
+    }
+ 
+    
     
 }

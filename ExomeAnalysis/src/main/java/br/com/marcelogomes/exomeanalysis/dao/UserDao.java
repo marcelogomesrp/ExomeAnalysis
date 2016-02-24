@@ -26,6 +26,12 @@ public class UserDao extends Dao<Long, User> implements Serializable{
         else if (results.size() == 1) return results.get(0);
         throw new NonUniqueResultException();
     }
+    
+    public List<User> findNotInProject(Long id){
+        Query query = em.createQuery("SELECT u FROM User u WHERE active = true AND id NOT IN (SELECT p.listRevisers.id from Project p WHERE p.id = :id)");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
 
 
 
