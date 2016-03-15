@@ -1,6 +1,7 @@
 package br.com.marcelogomes.exomeanalysis.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -112,6 +113,9 @@ public class Project implements Serializable {
     }
 
     public List<User> getListRevisers() {
+        if(listRevisers == null){
+            listRevisers = new ArrayList<>();
+        }
         return listRevisers;
     }
 

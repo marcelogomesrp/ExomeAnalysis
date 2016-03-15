@@ -30,13 +30,13 @@
                                         <h:outputText value="#{reviser.email}" />
                                     </p:column>
                                     <p:column  >
-                                        <p:commandButton value="Select" />
+                                        <p:commandButton value="Select" action="#{selectReviserMB.addReviser(reviser)}" ajax="false"/>
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
                         </p:tab>
                         
-                         <p:tab title="Select Reviser">
+                         <p:tab title="Selected Reviser">
                             <h:form>
                                 <p:dataTable value="#{selectReviserMB.listSelectReviser}" var="reviser" >
                                     <p:column headerText="Id" >
@@ -46,7 +46,7 @@
                                         <h:outputText value="#{reviser.email}" />
                                     </p:column>
                                     <p:column  >
-                                        <p:commandButton value="Select" />
+                                        <p:commandButton value="Unselect" action="#{selectReviserMB.addReviser(user)}" ajax="false"/>
                                     </p:column>
                                 </p:dataTable>
                             </h:form>

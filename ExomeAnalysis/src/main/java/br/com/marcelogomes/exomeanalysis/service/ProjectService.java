@@ -117,6 +117,10 @@ public class ProjectService implements Serializable {
     }
     //findNotInProject
     
+    public void addReviserInProject(Project project, User reviser){
+        projectDao.addReviserInProject(project, reviser);
+    }
+    
     public List<User> findReviserNotInProject(Project project){
         return userDao.findNotInProject(project.getId());
     }

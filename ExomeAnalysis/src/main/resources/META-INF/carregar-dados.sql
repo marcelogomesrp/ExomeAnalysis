@@ -29,3 +29,5 @@ INSERT INTO variant (project_id,position,selected) VALUES (2,"BBB",true);
 INSERT INTO variant (project_id,position,selected) VALUES (2,"BBBB",true);
 INSERT INTO variant (project_id,position,selected) VALUES (2,"BBBBB",true)
 INSERT INTO variant (project_id,position,selected) VALUES (2,"BBBBBB",false);
+
+INSERT INTO project_user (listProjectsReviser_id, listRevisers_id) VALUES (1,1);

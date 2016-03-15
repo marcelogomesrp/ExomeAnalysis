@@ -36,6 +36,13 @@ public class ProjectDao extends Dao<Long, Project> implements Serializable{
         return query.getResultList();
     }
     
+    public void addReviserInProject(Project project, User reviser){
+        Project p = getById(project.getId());
+        p.getListRevisers().add(reviser);
+        this.merge(project);
+        System.out.println("**************************** Salvado!!! ****");
+    }
+    
     
     
 }

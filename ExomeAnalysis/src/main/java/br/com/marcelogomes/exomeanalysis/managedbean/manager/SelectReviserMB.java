@@ -5,9 +5,11 @@ import br.com.marcelogomes.exomeanalysis.model.User;
 import br.com.marcelogomes.exomeanalysis.service.ProjectService;
 import br.com.marcelogomes.exomeanalysis.service.ReviserService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+//import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -15,7 +17,8 @@ import javax.inject.Inject;
  * @author marcelo
  */
 @Named(value = "selectReviserMB")
-@RequestScoped
+//@RequestScoped
+@SessionScoped
 public class SelectReviserMB implements Serializable{
     @Inject
     private ProjectService projectService;
@@ -24,6 +27,7 @@ public class SelectReviserMB implements Serializable{
     private Project project;
     private List<User> listUnselectReviser;
     private List<User> listSelectReviser;
+    private List<User> listDonotShow;
     
 
     /**
@@ -41,7 +45,9 @@ public class SelectReviserMB implements Serializable{
     }
 
     public List<User> getListUnselectReviser() {
-        return reviserService.findUnselectedByProject(project);
+        List<User> todos =  reviserService.findUnselectedByProject(project);
+        todos.removeAll(getListDonotShow());
+        return todos;
     }
 
     public void setListUnselectReviser(List<User> listUnselectReviser) {
@@ -63,5 +69,24 @@ public class SelectReviserMB implements Serializable{
         this.project = project;
         return "select_reviser";
     }
+
+    public List<User> getListDonotShow() {
+        if(listDonotShow == null)
+            listDonotShow = new ArrayList<>();
+        return listDonotShow;
+    }
+
+    public void setListDonotShow(List<User> listDonotShow) {
+        this.listDonotShow = listDonotShow;
+    }
+    
+    public void addReviser(User user){
+       // listSelectReviser.add(user);
+       // listUnselectReviser.remove(user);
+       projectService.addReviserInProject(project, user);
+        System.out.println("Selecionado tudo");
+    }
+    
+    
     
 }
